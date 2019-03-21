@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 /**
  *  render a form that when submitted, creates a new Box. 
+ *  props: {triggerAddNewBox() }
  *  input: {
  *          background color, 
  *          width 
@@ -19,30 +20,38 @@ class NewBoxForm extends Component {
             width: '',
             backgroundColor: ''
             };
-        this.handleChange = this.handleChange.bing(this);
-        this.handleSubmit = this.handleSubmit.bing(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     } 
 
-    handleChange() {
-
+    handleChange(evt) {
+        this.setState(
+            { [evt.target.name]: evt.target.value}
+        )
     }
 
-    handleSubmit() {
-
+    handleSubmit(evt) {
+        evt.preventDefault();
+        this.props.triggerAddNewBox(this.state);
+        this.setState({
+            height: '',
+            width: '',
+            backgroundColor: ''
+            });
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 
-                <label for="width"> Width: </label>
-                <input name="width" value={this.state.width} onChange={this.handleChange}/>
+                <label htmlFor="height"> Height: </label>
+                <input id="height" name="height" value={this.state.height} onChange={this.handleChange}/>
+
+                <label htmlFor="width"> Width: </label>
+                <input id="width" name="width" value={this.state.width} onChange={this.handleChange}/>
                 
-                <label for="height"> Height: </label>
-                <input name="height" value={this.state.height} onChange={this.handleChange}/>
-                
-                <label for="backgroundColor"> Background Color: </label>
-                <input name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleChange}/>
+                <label htmlFor="backgroundColor"> Background Color: </label>
+                <input id="backgroundColor" name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleChange}/>
 
                 <button>  Add New Box!  </button>
             </form>
