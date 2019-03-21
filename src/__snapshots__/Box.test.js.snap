@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot on initial render 1`] = `
+<div
+  className="Box"
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "height": undefined,
+        "width": undefined,
+      }
+    }
+  />
+  <button>
+    X
+  </button>
+</div>
+`;
